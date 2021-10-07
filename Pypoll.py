@@ -8,3 +8,19 @@
 #
 # print total votes, print votes per candidate and % per candidate in the same line,
 # print key with largest value 
+
+#All nessicary imports 
+import datetime as dt , csv, os
+
+#create a current time variable
+now = dt.datetime.now()
+
+# opening the CSV data
+fileToLoad = "election_results.csv"
+with open(fileToLoad) as file :
+    print(file)
+
+# Opening the save file
+fileToSave = os.path.join("Analysis","Results.txt")
+with open(fileToSave, "w") as file :
+    file.write("hello world")

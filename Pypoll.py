@@ -13,14 +13,30 @@
 import datetime as dt , csv, os
 
 #create a current time variable
-now = dt.datetime.now()
+start = dt.datetime.now()
 
-# opening the CSV data
+# create a dictionary to hold votes
+Candidates = {}
+
+#opening the CSV data and reading the CSV
 fileToLoad = "election_results.csv"
 with open(fileToLoad) as file :
-    print(file)
-
+    fileReader = csv.reader(file)
+    next(fileReader, None) #Skips first line
+    previous = ""
+# Records total votes per person
+    for row in fileReader : 
+        if row[2] == previous :
+            Candidates[row[2]] += 1
+        else :
+            Candidates.update({row[2] : 1})
+            previous = row[2]
+    
 # Opening the save file
 fileToSave = os.path.join("Analysis","Results.txt")
 with open(fileToSave, "w") as file :
-    file.write("hello world")
+    file.write("Counties in the election\n------------------------\nArapahoe\nDenver\nJefferson")
+# Counts Total Votes
+# Counts Individual Vote %
+# Writes Winner
+
